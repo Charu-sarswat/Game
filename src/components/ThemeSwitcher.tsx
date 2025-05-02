@@ -35,8 +35,8 @@ const Container = styled.div<{ isOpen: boolean }>`
   height: calc(100vh - 80px);
   z-index: 1000;
   padding: 2rem;
-  animation: ${props => props.isOpen ? css`${slideIn}` : css`${slideOut}`} 0.5s forwards;
-  display: ${props => props.isOpen || props.isOpen === undefined ? 'block' : 'none'};
+  animation: ${(props: { isOpen: boolean }) => props.isOpen ? css`${slideIn}` : css`${slideOut}`} 0.5s forwards;
+  display: ${(props: { isOpen: boolean }) => props.isOpen || props.isOpen === undefined ? 'block' : 'none'};
   box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
   overflow-y: auto;
 `;
@@ -98,21 +98,21 @@ const ThemeGrid = styled.div`
 const ThemeCard = styled.div<{ theme: ThemeType; isActive: boolean; isLocked: boolean }>`
   padding: 1rem;
   border-radius: 12px;
-  border: 2px solid ${props => props.isActive
+  border: 2px solid ${(props: { isActive: boolean; isLocked: boolean }) => props.isActive
     ? 'var(--primary)'
     : props.isLocked
       ? 'rgba(255, 255, 255, 0.1)'
       : 'rgba(255, 255, 255, 0.2)'};
-  background: ${props => props.isLocked
+  background: ${(props: { isLocked: boolean }) => props.isLocked
     ? 'rgba(20, 20, 30, 0.6)'
     : 'rgba(30, 30, 40, 0.6)'};
-  cursor: ${props => props.isLocked ? 'not-allowed' : 'pointer'};
+  cursor: ${(props: { isLocked: boolean }) => props.isLocked ? 'not-allowed' : 'pointer'};
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  opacity: ${props => props.isLocked ? 0.5 : 1};
+  opacity: ${(props: { isLocked: boolean }) => props.isLocked ? 0.5 : 1};
   
-  ${props => !props.isLocked && `
+  ${(props: { isLocked: boolean }) => !props.isLocked && `
     &:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -120,7 +120,7 @@ const ThemeCard = styled.div<{ theme: ThemeType; isActive: boolean; isLocked: bo
     }
   `}
   
-  ${props => props.isActive && !props.isLocked && `
+  ${(props: { isActive: boolean; isLocked: boolean }) => props.isActive && !props.isLocked && `
     box-shadow: 0 0 20px var(--primary);
     transform: scale(1.05);
   `}
@@ -137,12 +137,12 @@ const ThemeCard = styled.div<{ theme: ThemeType; isActive: boolean; isLocked: bo
       rgba(255, 255, 255, 0.1),
       transparent
     );
-    opacity: ${props => props.isActive ? 0.5 : 0};
+    opacity: ${(props: { isActive: boolean }) => props.isActive ? 0.5 : 0};
     animation: ${css`${rotate}`} 4s linear infinite;
     pointer-events: none;
   }
   
-  ${props => props.isLocked && `
+  ${(props: { isLocked: boolean }) => props.isLocked && `
     &::after {
       content: '🔒';
       position: absolute;
@@ -172,7 +172,7 @@ const ColorSwatch = styled.div<{ color: string }>`
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: ${props => props.color};
+  background-color: ${(props: { color: string }) => props.color};
   margin: 0 5px;
   border: 1px solid rgba(255, 255, 255, 0.3);
 `;
@@ -207,10 +207,10 @@ const VolumeSlider = styled.input`
 `;
 
 const MuteToggle = styled.button<{ isMuted: boolean }>`
-  background: ${props => props.isMuted
+  background: ${(props: { isMuted: boolean }) => props.isMuted
     ? 'rgba(255, 100, 100, 0.2)'
     : 'rgba(100, 255, 100, 0.2)'};
-  border: 1px solid ${props => props.isMuted
+  border: 1px solid ${(props: { isMuted: boolean }) => props.isMuted
     ? 'rgba(255, 100, 100, 0.5)'
     : 'rgba(100, 255, 100, 0.5)'};
   border-radius: 20px;
@@ -224,7 +224,7 @@ const MuteToggle = styled.button<{ isMuted: boolean }>`
   transition: all 0.3s ease;
   
   &:hover {
-    background: ${props => props.isMuted
+    background: ${(props: { isMuted: boolean }) => props.isMuted
     ? 'rgba(255, 100, 100, 0.3)'
     : 'rgba(100, 255, 100, 0.3)'};
   }

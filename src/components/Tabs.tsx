@@ -42,8 +42,8 @@ const TabItem = styled.button<{ active: boolean }>`
   border: none;
   padding: 0.75rem 1.5rem;
   font-size: 1.1rem;
-  font-weight: ${props => props.active ? '600' : '400'};
-  color: ${props => props.active ? 'var(--text-primary)' : 'var(--text-secondary)'};
+  font-weight: ${(props: { active: boolean }) => props.active ? '600' : '400'};
+  color: ${(props: { active: boolean }) => props.active ? 'var(--text-primary)' : 'var(--text-secondary)'};
   cursor: pointer;
   position: relative;
   transition: all 0.3s ease;
@@ -53,7 +53,7 @@ const TabItem = styled.button<{ active: boolean }>`
   overflow: hidden;
   
   &:hover {
-    color: ${props => props.active ? 'var(--text-primary)' : 'var(--text-primary)'};
+    color: ${(props: { active: boolean }) => props.active ? 'var(--text-primary)' : 'var(--text-primary)'};
   }
   
   &::after {
@@ -63,15 +63,15 @@ const TabItem = styled.button<{ active: boolean }>`
     left: 0;
     width: 100%;
     height: 3px;
-    background: ${props => props.active ? 'var(--gradient-primary)' : 'transparent'};
-    transform: scaleX(${props => props.active ? 1 : 0});
+    background: ${(props: { active: boolean }) => props.active ? 'var(--gradient-primary)' : 'transparent'};
+    transform: scaleX(${(props: { active: boolean }) => props.active ? 1 : 0});
     transition: transform 0.3s ease;
     border-radius: 3px 3px 0 0;
   }
   
   &:hover::after {
-    transform: scaleX(${props => props.active ? 1 : 0.3});
-    background: ${props => props.active ? 'var(--gradient-primary)' : 'rgba(110, 72, 170, 0.3)'};
+    transform: scaleX(${(props: { active: boolean }) => props.active ? 1 : 0.3});
+    background: ${(props: { active: boolean }) => props.active ? 'var(--gradient-primary)' : 'rgba(110, 72, 170, 0.3)'};
   }
   
   &::before {
@@ -81,8 +81,8 @@ const TabItem = styled.button<{ active: boolean }>`
     left: 0;
     width: 100%;
     height: 100%;
-    background: ${props => props.active ? 'radial-gradient(circle at center, rgba(110, 72, 170, 0.1), transparent 70%)' : 'transparent'};
-    opacity: ${props => props.active ? 1 : 0};
+    background: ${(props: { active: boolean }) => props.active ? 'radial-gradient(circle at center, rgba(110, 72, 170, 0.1), transparent 70%)' : 'transparent'};
+    opacity: ${(props: { active: boolean }) => props.active ? 1 : 0};
     transition: opacity 0.3s ease;
     z-index: -1;
   }
