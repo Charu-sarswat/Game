@@ -249,6 +249,15 @@ const SectionTitle = styled.h3`
   font-size: 1.2rem;
 `;
 
+interface ThemeColorMap {
+  [key: string]: string[];
+  default: string[];
+  dark: string[];
+  neon: string[];
+  retro: string[];
+  fantasy: string[];
+}
+
 // Theme card component
 const ThemeOption: React.FC<{
   theme: ThemeType;
@@ -257,7 +266,7 @@ const ThemeOption: React.FC<{
   onClick: () => void;
 }> = ({ theme, isActive, isLocked, onClick }) => {
   // Define theme preview colors with correct theme names
-  const themeColors = {
+  const themeColors: ThemeColorMap = {
     default: ['#00c8ff', '#92fe9d', '#6e48aa'],
     dark: ['#7928ca', '#ff0080', '#111111'],
     neon: ['#00ff00', '#ff00ff', '#ffff00'],

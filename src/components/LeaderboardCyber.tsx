@@ -55,6 +55,7 @@ const borderFlash = keyframes`
   100% { border-color: var(--primary); box-shadow: 0 0 5px var(--primary); }
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const rotateY = keyframes`
   0% { transform: rotateY(0deg); }
   100% { transform: rotateY(360deg); }
@@ -737,6 +738,7 @@ const StatValue = styled.div`
 const LeaderboardCyber: React.FC = () => {
   const [currentLevel, setCurrentLevel] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [sortBy, setSortBy] = useState('rank');
   const currentUser = 1; // Simulating current user ID
 

@@ -1,57 +1,57 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 
 // Sample notification data
 interface Notification {
-    id: string;
-    type: 'info' | 'success' | 'warning' | 'error' | 'system';
-    message: string;
-    timestamp: string;
-    read: boolean;
-    isPriority: boolean;
+  id: string;
+  type: 'info' | 'success' | 'warning' | 'error' | 'system';
+  message: string;
+  timestamp: string;
+  read: boolean;
+  isPriority: boolean;
 }
 
 const sampleNotifications: Notification[] = [
-    {
-        id: 'NT-001',
-        type: 'system',
-        message: 'SYSTEM UPDATE v2.4.1 COMPLETED. NEURAL INTERFACE OPTIMIZED.',
-        timestamp: '18:42:01',
-        read: false,
-        isPriority: true,
-    },
-    {
-        id: 'NT-002',
-        type: 'info',
-        message: 'NEW MISSION AVAILABLE: "NEON DISTRICT INFILTRATION".',
-        timestamp: '17:15:22',
-        read: false,
-        isPriority: false,
-    },
-    {
-        id: 'NT-003',
-        type: 'success',
-        message: 'ACHIEVEMENT UNLOCKED: "CIRCUIT BREAKER".',
-        timestamp: '14:33:07',
-        read: true,
-        isPriority: false,
-    },
-    {
-        id: 'NT-004',
-        type: 'warning',
-        message: 'NETWORK STABILITY AT 67%. FIREWALL DEGRADATION DETECTED.',
-        timestamp: '12:05:49',
-        read: true,
-        isPriority: true,
-    },
-    {
-        id: 'NT-005',
-        type: 'error',
-        message: 'CONNECTION TO MAINFRAME LOST. ATTEMPTING RECONNECTION...',
-        timestamp: '09:28:33',
-        read: true,
-        isPriority: true,
-    },
+  {
+    id: 'NT-001',
+    type: 'system',
+    message: 'SYSTEM UPDATE v2.4.1 COMPLETED. NEURAL INTERFACE OPTIMIZED.',
+    timestamp: '18:42:01',
+    read: false,
+    isPriority: true,
+  },
+  {
+    id: 'NT-002',
+    type: 'info',
+    message: 'NEW MISSION AVAILABLE: "NEON DISTRICT INFILTRATION".',
+    timestamp: '17:15:22',
+    read: false,
+    isPriority: false,
+  },
+  {
+    id: 'NT-003',
+    type: 'success',
+    message: 'ACHIEVEMENT UNLOCKED: "CIRCUIT BREAKER".',
+    timestamp: '14:33:07',
+    read: true,
+    isPriority: false,
+  },
+  {
+    id: 'NT-004',
+    type: 'warning',
+    message: 'NETWORK STABILITY AT 67%. FIREWALL DEGRADATION DETECTED.',
+    timestamp: '12:05:49',
+    read: true,
+    isPriority: true,
+  },
+  {
+    id: 'NT-005',
+    type: 'error',
+    message: 'CONNECTION TO MAINFRAME LOST. ATTEMPTING RECONNECTION...',
+    timestamp: '09:28:33',
+    read: true,
+    isPriority: true,
+  },
 ];
 
 // Animations
@@ -212,20 +212,20 @@ const NotificationsList = styled.div`
 `;
 
 interface NotificationItemProps {
-    type: 'info' | 'success' | 'warning' | 'error' | 'system';
-    read: boolean;
-    isPriority: boolean;
+  type: 'info' | 'success' | 'warning' | 'error' | 'system';
+  read: boolean;
+  isPriority: boolean;
 }
 
 const getNotificationColor = (type: string) => {
-    switch (type) {
-        case 'info': return 'var(--info, #36a3f7)';
-        case 'success': return 'var(--success, #0cce6b)';
-        case 'warning': return 'var(--warning, #ffc107)';
-        case 'error': return 'var(--error, #ff3e5e)';
-        case 'system': return 'var(--primary)';
-        default: return 'var(--text-primary)';
-    }
+  switch (type) {
+    case 'info': return 'var(--info, #36a3f7)';
+    case 'success': return 'var(--success, #0cce6b)';
+    case 'warning': return 'var(--warning, #ffc107)';
+    case 'error': return 'var(--error, #ff3e5e)';
+    case 'system': return 'var(--primary)';
+    default: return 'var(--text-primary)';
+  }
 };
 
 const NotificationItem = styled.div<NotificationItemProps>`
@@ -252,8 +252,8 @@ const NotificationItem = styled.div<NotificationItemProps>`
       background: ${`linear-gradient(90deg, 
         transparent, 
         rgba(${props.type === 'error' ? 'var(--error-rgb, 255,62,94)' :
-            props.type === 'warning' ? 'var(--warning-rgb, 255,193,7)' :
-                'var(--primary-rgb)'}, 0.1), 
+      props.type === 'warning' ? 'var(--warning-rgb, 255,193,7)' :
+        'var(--primary-rgb)'}, 0.1), 
         transparent)`};
       animation: ${css`${borderFlow}`} 2s linear infinite;
       z-index: 0;
@@ -295,15 +295,15 @@ const NotificationIcon = styled.div<{ type: string }>`
   justify-content: center;
   border-radius: 50%;
   background-color: rgba(${props => {
-        switch (props.type) {
-            case 'info': return 'var(--info-rgb, 54,163,247)';
-            case 'success': return 'var(--success-rgb, 12,206,107)';
-            case 'warning': return 'var(--warning-rgb, 255,193,7)';
-            case 'error': return 'var(--error-rgb, 255,62,94)';
-            case 'system': return 'var(--primary-rgb)';
-            default: return 'var(--primary-rgb)';
-        }
-    }}, 0.2);
+    switch (props.type) {
+      case 'info': return 'var(--info-rgb, 54,163,247)';
+      case 'success': return 'var(--success-rgb, 12,206,107)';
+      case 'warning': return 'var(--warning-rgb, 255,193,7)';
+      case 'error': return 'var(--error-rgb, 255,62,94)';
+      case 'system': return 'var(--primary-rgb)';
+      default: return 'var(--primary-rgb)';
+    }
+  }}, 0.2);
   color: ${props => getNotificationColor(props.type)};
   font-size: 0.9rem;
   
@@ -373,99 +373,99 @@ const NotificationBadge = styled.div`
 
 // Helper function to get the icon for each notification type
 const getIconForType = (type: string) => {
-    switch (type) {
-        case 'info': return 'ℹ';
-        case 'success': return '✓';
-        case 'warning': return '⚠';
-        case 'error': return '✗';
-        case 'system': return '⚙';
-        default: return '•';
-    }
+  switch (type) {
+    case 'info': return 'ℹ';
+    case 'success': return '✓';
+    case 'warning': return '⚠';
+    case 'error': return '✗';
+    case 'system': return '⚙';
+    default: return '•';
+  }
 };
 
 interface HolographicNotificationsProps {
-    onlyShowUnread?: boolean;
-    maxNotifications?: number;
+  onlyShowUnread?: boolean;
+  maxNotifications?: number;
 }
 
 const HolographicNotifications: React.FC<HolographicNotificationsProps> = ({
-    onlyShowUnread = false,
-    maxNotifications = 5
+  onlyShowUnread = false,
+  maxNotifications = 5
 }) => {
-    const [notifications, setNotifications] = useState<Notification[]>(sampleNotifications);
-    const [showOnlyUnread, setShowOnlyUnread] = useState(onlyShowUnread);
+  const [notifications, setNotifications] = useState<Notification[]>(sampleNotifications);
+  const [showOnlyUnread, setShowOnlyUnread] = useState(onlyShowUnread);
 
-    const unreadCount = notifications.filter(n => !n.read).length;
+  const unreadCount = notifications.filter(n => !n.read).length;
 
-    const displayedNotifications = showOnlyUnread
-        ? notifications.filter(n => !n.read).slice(0, maxNotifications)
-        : notifications.slice(0, maxNotifications);
+  const displayedNotifications = showOnlyUnread
+    ? notifications.filter(n => !n.read).slice(0, maxNotifications)
+    : notifications.slice(0, maxNotifications);
 
-    const markAllAsRead = () => {
-        setNotifications(notifications.map(n => ({ ...n, read: true })));
-    };
+  const markAllAsRead = () => {
+    setNotifications(notifications.map(n => ({ ...n, read: true })));
+  };
 
-    const toggleReadFilter = () => {
-        setShowOnlyUnread(!showOnlyUnread);
-    };
+  const toggleReadFilter = () => {
+    setShowOnlyUnread(!showOnlyUnread);
+  };
 
-    return (
-        <NotificationsContainer>
-            <NotificationsHeader>
-                <Title>NOTIFICATIONS</Title>
-                <NotificationCounter>
-                    <span>{unreadCount}</span> UNREAD / {notifications.length} TOTAL
-                </NotificationCounter>
-            </NotificationsHeader>
+  return (
+    <NotificationsContainer>
+      <NotificationsHeader>
+        <Title>NOTIFICATIONS</Title>
+        <NotificationCounter>
+          <span>{unreadCount}</span> UNREAD / {notifications.length} TOTAL
+        </NotificationCounter>
+      </NotificationsHeader>
 
-            <NotificationsList>
-                {displayedNotifications.length > 0 ? (
-                    displayedNotifications.map(notification => (
-                        <NotificationItem
-                            key={notification.id}
-                            type={notification.type}
-                            read={notification.read}
-                            isPriority={notification.isPriority}
-                        >
-                            <NotificationIcon type={notification.type}>
-                                {getIconForType(notification.type)}
-                            </NotificationIcon>
-                            <NotificationMessage>
-                                {notification.message}
-                            </NotificationMessage>
-                            <NotificationTimestamp>
-                                {notification.timestamp}
-                            </NotificationTimestamp>
-                            {!notification.read && <NotificationBadge />}
-                        </NotificationItem>
-                    ))
-                ) : (
-                    <NotificationItem
-                        type="info"
-                        read={false}
-                        isPriority={false}
-                    >
-                        <NotificationIcon type="info">ℹ</NotificationIcon>
-                        <NotificationMessage>
-                            NO ACTIVE NOTIFICATIONS FOUND
-                        </NotificationMessage>
-                        <NotificationTimestamp>
-                            SYSTEM CLEAR
-                        </NotificationTimestamp>
-                    </NotificationItem>
-                )}
-            </NotificationsList>
+      <NotificationsList>
+        {displayedNotifications.length > 0 ? (
+          displayedNotifications.map(notification => (
+            <NotificationItem
+              key={notification.id}
+              type={notification.type}
+              read={notification.read}
+              isPriority={notification.isPriority}
+            >
+              <NotificationIcon type={notification.type}>
+                {getIconForType(notification.type)}
+              </NotificationIcon>
+              <NotificationMessage>
+                {notification.message}
+              </NotificationMessage>
+              <NotificationTimestamp>
+                {notification.timestamp}
+              </NotificationTimestamp>
+              {!notification.read && <NotificationBadge />}
+            </NotificationItem>
+          ))
+        ) : (
+          <NotificationItem
+            type="info"
+            read={false}
+            isPriority={false}
+          >
+            <NotificationIcon type="info">ℹ</NotificationIcon>
+            <NotificationMessage>
+              NO ACTIVE NOTIFICATIONS FOUND
+            </NotificationMessage>
+            <NotificationTimestamp>
+              SYSTEM CLEAR
+            </NotificationTimestamp>
+          </NotificationItem>
+        )}
+      </NotificationsList>
 
-            <NotificationControls>
-                <ActionButton onClick={toggleReadFilter}>
-                    {showOnlyUnread ? 'SHOW ALL' : 'SHOW UNREAD'}
-                </ActionButton>
-                <ActionButton onClick={markAllAsRead}>
-                    MARK ALL READ
-                </ActionButton>
-            </NotificationControls>
-        </NotificationsContainer>
-    );
+      <NotificationControls>
+        <ActionButton onClick={toggleReadFilter}>
+          {showOnlyUnread ? 'SHOW ALL' : 'SHOW UNREAD'}
+        </ActionButton>
+        <ActionButton onClick={markAllAsRead}>
+          MARK ALL READ
+        </ActionButton>
+      </NotificationControls>
+    </NotificationsContainer>
+  );
 };
 
 export default HolographicNotifications; 

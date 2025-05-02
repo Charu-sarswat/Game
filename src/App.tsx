@@ -358,6 +358,8 @@ const VariantControls = styled.div`
   }
 `;
 
+// Unused styled components
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const DesignHeader = styled.div`
   background-color: rgba(10, 10, 20, 0.9);
   padding: 1.25rem 1.5rem;
@@ -395,6 +397,7 @@ const DesignHeader = styled.div`
   }
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const DesignTitle = styled.h2`
   font-size: 1.25rem;
   color: var(--primary);
@@ -417,6 +420,7 @@ const DesignTitle = styled.h2`
   }
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const StatsContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 5px;
@@ -724,6 +728,7 @@ const App: React.FC = () => {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const toggleArMode = () => {
     setArMode(!arMode);
     if (!arMode) {

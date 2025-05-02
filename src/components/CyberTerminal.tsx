@@ -3,14 +3,14 @@ import styled, { keyframes, css } from 'styled-components';
 
 // Sample terminal commands and responses
 const COMMANDS = {
-    help: 'Available commands: help, clear, status, scan, connect, list, info, exit',
-    clear: 'Terminal cleared.',
-    status: 'SYSTEM STATUS: ONLINE\nNETWORK: CONNECTED\nFIREWALL: ACTIVE\nENCRYPTION: ENABLED\nTHREAT LEVEL: LOW',
-    scan: 'Scanning network...\nFound 5 nodes\nScan complete: No threats detected',
-    connect: 'Establishing secure connection...\nConnection established. Welcome to the MAINFRAME.',
-    list: 'Available nodes:\n- CENTRAL_NODE [SECURED]\n- DATA_VAULT [RESTRICTED]\n- NEON_DISTRICT [UNLOCKED]\n- BLACK_MARKET [HAZARDOUS]\n- NEURAL_NET [ENCRYPTED]',
-    info: 'CYBERNET v4.2.1\nBuild date: 2077-05-12\nEncryption: AES-4096\nProtocol: QUANTUM-TCP',
-    exit: 'Disconnecting from terminal...\nConnection terminated.'
+  help: 'Available commands: help, clear, status, scan, connect, list, info, exit',
+  clear: 'Terminal cleared.',
+  status: 'SYSTEM STATUS: ONLINE\nNETWORK: CONNECTED\nFIREWALL: ACTIVE\nENCRYPTION: ENABLED\nTHREAT LEVEL: LOW',
+  scan: 'Scanning network...\nFound 5 nodes\nScan complete: No threats detected',
+  connect: 'Establishing secure connection...\nConnection established. Welcome to the MAINFRAME.',
+  list: 'Available nodes:\n- CENTRAL_NODE [SECURED]\n- DATA_VAULT [RESTRICTED]\n- NEON_DISTRICT [UNLOCKED]\n- BLACK_MARKET [HAZARDOUS]\n- NEURAL_NET [ENCRYPTED]',
+  info: 'CYBERNET v4.2.1\nBuild date: 2077-05-12\nEncryption: AES-4096\nProtocol: QUANTUM-TCP',
+  exit: 'Disconnecting from terminal...\nConnection terminated.'
 };
 
 // Animations
@@ -173,6 +173,7 @@ const TerminalContent = styled.div`
   }
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const TerminalWelcome = styled.div`
   color: var(--secondary);
   margin-bottom: 1rem;
@@ -181,10 +182,10 @@ const TerminalWelcome = styled.div`
 `;
 
 interface TerminalLineProps {
-    isInput?: boolean;
-    isOutput?: boolean;
-    isError?: boolean;
-    typing?: boolean;
+  isInput?: boolean;
+  isOutput?: boolean;
+  isError?: boolean;
+  typing?: boolean;
 }
 
 const TerminalLine = styled.div<TerminalLineProps>`
@@ -192,11 +193,11 @@ const TerminalLine = styled.div<TerminalLineProps>`
   line-height: 1.4;
   font-size: 0.9rem;
   color: ${props =>
-        props.isError ? 'var(--error)' :
-            props.isInput ? 'var(--primary)' :
-                props.isOutput ? 'var(--text-primary)' :
-                    'var(--primary)'
-    };
+    props.isError ? 'var(--error)' :
+      props.isInput ? 'var(--primary)' :
+        props.isOutput ? 'var(--text-primary)' :
+          'var(--primary)'
+  };
   position: relative;
   
   ${props => props.typing && css`
@@ -237,6 +238,7 @@ const InputField = styled.input`
   caret-color: var(--primary);
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const InputCursor = styled.div`
   width: 8px;
   height: 1.2rem;
@@ -293,218 +295,218 @@ const SuggestionItem = styled.div<{ isSelected: boolean }>`
 `;
 
 interface TerminalOutput {
-    id: number;
-    content: string;
-    type: 'input' | 'output' | 'error' | 'system';
+  id: number;
+  content: string;
+  type: 'input' | 'output' | 'error' | 'system';
 }
 
 const formatCommandResponse = (command: string, response: string) => {
-    // Process command output with simulated typing delay logic
-    return response;
+  // Process command output with simulated typing delay logic
+  return response;
 };
 
 interface CyberTerminalProps {
-    isMinimized?: boolean;
-    onMinimize?: () => void;
-    onMaximize?: () => void;
-    onClose?: () => void;
+  isMinimized?: boolean;
+  onMinimize?: () => void;
+  onMaximize?: () => void;
+  onClose?: () => void;
 }
 
 const CyberTerminal: React.FC<CyberTerminalProps> = ({
-    isMinimized = false,
-    onMinimize,
-    onMaximize,
-    onClose
+  isMinimized = false,
+  onMinimize,
+  onMaximize,
+  onClose
 }) => {
-    const [inputValue, setInputValue] = useState('');
-    const [commandHistory, setCommandHistory] = useState<string[]>([]);
-    const [historyIndex, setHistoryIndex] = useState(-1);
-    const [output, setOutput] = useState<TerminalOutput[]>([
-        {
-            id: 0,
-            content: 'CYBERNET TERMINAL v4.2.1\nEstablishing secure connection...\nConnection established.\nType "help" for available commands.',
-            type: 'system'
-        }
-    ]);
-    const [nextId, setNextId] = useState(1);
-    const [suggestions, setSuggestions] = useState<string[]>([]);
-    const [selectedSuggestion, setSelectedSuggestion] = useState(0);
+  const [inputValue, setInputValue] = useState('');
+  const [commandHistory, setCommandHistory] = useState<string[]>([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+  const [output, setOutput] = useState<TerminalOutput[]>([
+    {
+      id: 0,
+      content: 'CYBERNET TERMINAL v4.2.1\nEstablishing secure connection...\nConnection established.\nType "help" for available commands.',
+      type: 'system'
+    }
+  ]);
+  const [nextId, setNextId] = useState(1);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [selectedSuggestion, setSelectedSuggestion] = useState(0);
 
-    const contentRef = useRef<HTMLDivElement>(null);
-    const inputRef = useRef<HTMLInputElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-    // Focus input on mount
-    useEffect(() => {
-        if (inputRef.current) {
-            inputRef.current.focus();
-        }
-    }, []);
+  // Focus input on mount
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
-    // Scroll to bottom when new output is added
-    useEffect(() => {
-        if (contentRef.current) {
-            contentRef.current.scrollTop = contentRef.current.scrollHeight;
-        }
-    }, [output]);
+  // Scroll to bottom when new output is added
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollTop = contentRef.current.scrollHeight;
+    }
+  }, [output]);
 
-    // Filter command suggestions
-    useEffect(() => {
-        if (inputValue.trim()) {
-            const validCommands = Object.keys(COMMANDS);
-            const filtered = validCommands.filter(cmd =>
-                cmd.startsWith(inputValue.toLowerCase())
-            );
-            setSuggestions(filtered);
-            setSelectedSuggestion(0);
-        } else {
-            setSuggestions([]);
-        }
-    }, [inputValue]);
+  // Filter command suggestions
+  useEffect(() => {
+    if (inputValue.trim()) {
+      const validCommands = Object.keys(COMMANDS);
+      const filtered = validCommands.filter(cmd =>
+        cmd.startsWith(inputValue.toLowerCase())
+      );
+      setSuggestions(filtered);
+      setSelectedSuggestion(0);
+    } else {
+      setSuggestions([]);
+    }
+  }, [inputValue]);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value);
-    };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
 
-    const addOutput = (content: string, type: 'input' | 'output' | 'error' | 'system') => {
-        setOutput(prev => [...prev, { id: nextId, content, type }]);
+  const addOutput = (content: string, type: 'input' | 'output' | 'error' | 'system') => {
+    setOutput(prev => [...prev, { id: nextId, content, type }]);
+    setNextId(prev => prev + 1);
+  };
+
+  const processCommand = (command: string) => {
+    const cmd = command.trim().toLowerCase();
+
+    // Add command to history
+    setCommandHistory(prev => [cmd, ...prev].slice(0, 20));
+    setHistoryIndex(-1);
+
+    // Process command
+    if (cmd in COMMANDS) {
+      const response = formatCommandResponse(cmd, COMMANDS[cmd as keyof typeof COMMANDS]);
+
+      // Special handling for "clear" command
+      if (cmd === 'clear') {
+        setOutput([{ id: nextId, content: response, type: 'system' }]);
         setNextId(prev => prev + 1);
-    };
+        return;
+      }
 
-    const processCommand = (command: string) => {
-        const cmd = command.trim().toLowerCase();
+      addOutput(response, 'output');
+    } else if (cmd) {
+      addOutput(`Command not found: ${cmd}`, 'error');
+    }
+  };
 
-        // Add command to history
-        setCommandHistory(prev => [cmd, ...prev].slice(0, 20));
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // Handle command history navigation
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+
+      if (suggestions.length > 0) {
+        setSelectedSuggestion(prev => (prev > 0 ? prev - 1 : prev));
+      } else if (commandHistory.length > 0 && historyIndex < commandHistory.length - 1) {
+        const newIndex = historyIndex + 1;
+        setHistoryIndex(newIndex);
+        setInputValue(commandHistory[newIndex]);
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+
+      if (suggestions.length > 0) {
+        setSelectedSuggestion(prev => (prev < suggestions.length - 1 ? prev + 1 : prev));
+      } else if (historyIndex > 0) {
+        const newIndex = historyIndex - 1;
+        setHistoryIndex(newIndex);
+        setInputValue(commandHistory[newIndex]);
+      } else if (historyIndex === 0) {
         setHistoryIndex(-1);
+        setInputValue('');
+      }
+    } else if (e.key === 'Tab') {
+      e.preventDefault();
 
-        // Process command
-        if (cmd in COMMANDS) {
-            const response = formatCommandResponse(cmd, COMMANDS[cmd as keyof typeof COMMANDS]);
+      if (suggestions.length > 0) {
+        setInputValue(suggestions[selectedSuggestion]);
+      }
+    } else if (e.key === 'Enter') {
+      const command = inputValue.trim();
 
-            // Special handling for "clear" command
-            if (cmd === 'clear') {
-                setOutput([{ id: nextId, content: response, type: 'system' }]);
-                setNextId(prev => prev + 1);
-                return;
-            }
-
-            addOutput(response, 'output');
-        } else if (cmd) {
-            addOutput(`Command not found: ${cmd}`, 'error');
-        }
-    };
-
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        // Handle command history navigation
-        if (e.key === 'ArrowUp') {
-            e.preventDefault();
-
-            if (suggestions.length > 0) {
-                setSelectedSuggestion(prev => (prev > 0 ? prev - 1 : prev));
-            } else if (commandHistory.length > 0 && historyIndex < commandHistory.length - 1) {
-                const newIndex = historyIndex + 1;
-                setHistoryIndex(newIndex);
-                setInputValue(commandHistory[newIndex]);
-            }
-        } else if (e.key === 'ArrowDown') {
-            e.preventDefault();
-
-            if (suggestions.length > 0) {
-                setSelectedSuggestion(prev => (prev < suggestions.length - 1 ? prev + 1 : prev));
-            } else if (historyIndex > 0) {
-                const newIndex = historyIndex - 1;
-                setHistoryIndex(newIndex);
-                setInputValue(commandHistory[newIndex]);
-            } else if (historyIndex === 0) {
-                setHistoryIndex(-1);
-                setInputValue('');
-            }
-        } else if (e.key === 'Tab') {
-            e.preventDefault();
-
-            if (suggestions.length > 0) {
-                setInputValue(suggestions[selectedSuggestion]);
-            }
-        } else if (e.key === 'Enter') {
-            const command = inputValue.trim();
-
-            if (command) {
-                addOutput(`> ${command}`, 'input');
-                processCommand(command);
-                setInputValue('');
-                setSuggestions([]);
-            }
-        } else if (e.key === 'Escape') {
-            setSuggestions([]);
-        }
-    };
-
-    const handleSuggestionClick = (suggestion: string) => {
-        setInputValue(suggestion);
+      if (command) {
+        addOutput(`> ${command}`, 'input');
+        processCommand(command);
+        setInputValue('');
         setSuggestions([]);
-        if (inputRef.current) {
-            inputRef.current.focus();
-        }
-    };
+      }
+    } else if (e.key === 'Escape') {
+      setSuggestions([]);
+    }
+  };
 
-    return (
-        <TerminalContainer>
-            <TerminalHeader>
-                <HeaderTitle>CYBERNET <span>TERMINAL</span></HeaderTitle>
-                <HeaderControls>
-                    <HeaderButton onClick={onMinimize} />
-                    <HeaderButton onClick={onMaximize} />
-                    <HeaderButton onClick={onClose} />
-                </HeaderControls>
-            </TerminalHeader>
+  const handleSuggestionClick = (suggestion: string) => {
+    setInputValue(suggestion);
+    setSuggestions([]);
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
 
-            <TerminalContent ref={contentRef}>
-                {output.map(line => (
-                    <TerminalLine
-                        key={line.id}
-                        isInput={line.type === 'input'}
-                        isOutput={line.type === 'output'}
-                        isError={line.type === 'error'}
-                    >
-                        {line.type === 'input' ? (
-                            line.content
-                        ) : (
-                            line.content.split('\n').map((text, i) => (
-                                <div key={i}>{text}</div>
-                            ))
-                        )}
-                    </TerminalLine>
-                ))}
+  return (
+    <TerminalContainer>
+      <TerminalHeader>
+        <HeaderTitle>CYBERNET <span>TERMINAL</span></HeaderTitle>
+        <HeaderControls>
+          <HeaderButton onClick={onMinimize} />
+          <HeaderButton onClick={onMaximize} />
+          <HeaderButton onClick={onClose} />
+        </HeaderControls>
+      </TerminalHeader>
 
-                <TerminalInput>
-                    <TerminalPrompt>&gt;</TerminalPrompt>
-                    <InputField
-                        ref={inputRef}
-                        value={inputValue}
-                        onChange={handleInputChange}
-                        onKeyDown={handleKeyDown}
-                        placeholder="Enter command..."
-                    />
+      <TerminalContent ref={contentRef}>
+        {output.map(line => (
+          <TerminalLine
+            key={line.id}
+            isInput={line.type === 'input'}
+            isOutput={line.type === 'output'}
+            isError={line.type === 'error'}
+          >
+            {line.type === 'input' ? (
+              line.content
+            ) : (
+              line.content.split('\n').map((text, i) => (
+                <div key={i}>{text}</div>
+              ))
+            )}
+          </TerminalLine>
+        ))}
 
-                    {suggestions.length > 0 && (
-                        <CommandSuggestions>
-                            {suggestions.map((suggestion, index) => (
-                                <SuggestionItem
-                                    key={suggestion}
-                                    isSelected={index === selectedSuggestion}
-                                    onClick={() => handleSuggestionClick(suggestion)}
-                                >
-                                    {suggestion}
-                                </SuggestionItem>
-                            ))}
-                        </CommandSuggestions>
-                    )}
-                </TerminalInput>
-            </TerminalContent>
+        <TerminalInput>
+          <TerminalPrompt>&gt;</TerminalPrompt>
+          <InputField
+            ref={inputRef}
+            value={inputValue}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+            placeholder="Enter command..."
+          />
 
-            <StatusIndicator />
-        </TerminalContainer>
-    );
+          {suggestions.length > 0 && (
+            <CommandSuggestions>
+              {suggestions.map((suggestion, index) => (
+                <SuggestionItem
+                  key={suggestion}
+                  isSelected={index === selectedSuggestion}
+                  onClick={() => handleSuggestionClick(suggestion)}
+                >
+                  {suggestion}
+                </SuggestionItem>
+              ))}
+            </CommandSuggestions>
+          )}
+        </TerminalInput>
+      </TerminalContent>
+
+      <StatusIndicator />
+    </TerminalContainer>
+  );
 };
 
 export default CyberTerminal; 

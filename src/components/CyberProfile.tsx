@@ -3,28 +3,28 @@ import styled, { keyframes, css } from 'styled-components';
 
 // Sample user data
 const defaultUserData = {
-    id: 'USR-42X9',
-    name: 'NEURAL-89',
-    level: 29,
-    rank: 4,
-    joinDate: '2077-05-12',
-    avatar: '🧠',
-    status: 'ONLINE',
-    achievements: [
-        { id: 1, name: 'CIRCUIT BREAKER', description: 'Complete level 10 without errors', completed: true, date: '2077-06-01' },
-        { id: 2, name: 'GHOST PROTOCOL', description: 'Finish a game undetected', completed: true, date: '2077-07-15' },
-        { id: 3, name: 'NEURAL HACK', description: 'Solve 5 puzzles in under 60 seconds', completed: false, date: null },
-        { id: 4, name: 'VOID WALKER', description: 'Complete the void sequence', completed: true, date: '2077-09-03' },
-        { id: 5, name: 'QUANTUM SHIFT', description: 'Reach level 50', completed: false, date: null },
-    ],
-    stats: {
-        gamesPlayed: 142,
-        wins: 87,
-        winRate: '61.3%',
-        bestScore: 9870,
-        totalTime: '127h 42m',
-        favoriteLevel: 'Neon District',
-    }
+  id: 'USR-42X9',
+  name: 'NEURAL-89',
+  level: 29,
+  rank: 4,
+  joinDate: '2077-05-12',
+  avatar: '🧠',
+  status: 'ONLINE',
+  achievements: [
+    { id: 1, name: 'CIRCUIT BREAKER', description: 'Complete level 10 without errors', completed: true, date: '2077-06-01' },
+    { id: 2, name: 'GHOST PROTOCOL', description: 'Finish a game undetected', completed: true, date: '2077-07-15' },
+    { id: 3, name: 'NEURAL HACK', description: 'Solve 5 puzzles in under 60 seconds', completed: false, date: null },
+    { id: 4, name: 'VOID WALKER', description: 'Complete the void sequence', completed: true, date: '2077-09-03' },
+    { id: 5, name: 'QUANTUM SHIFT', description: 'Reach level 50', completed: false, date: null },
+  ],
+  stats: {
+    gamesPlayed: 142,
+    wins: 87,
+    winRate: '61.3%',
+    bestScore: 9870,
+    totalTime: '127h 42m',
+    favoriteLevel: 'Neon District',
+  }
 };
 
 // Animations
@@ -538,104 +538,106 @@ const ActionButton = styled.button`
 `;
 
 const CyberProfile: React.FC<{ userId?: string }> = ({ userId }) => {
-    const [userData, setUserData] = useState(defaultUserData);
-    const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [userData, setUserData] = useState(defaultUserData);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [loading, setLoading] = useState(false);
 
-    // In a real app, you would fetch user data based on userId
-    useEffect(() => {
-        if (userId) {
-            setLoading(true);
-            // Mock API call
-            setTimeout(() => {
-                setLoading(false);
-                // Here you would set the fetched data
-            }, 1500);
-        }
-    }, [userId]);
+  // In a real app, you would fetch user data based on userId
+  useEffect(() => {
+    if (userId) {
+      setLoading(true);
+      // Mock API call
+      setTimeout(() => {
+        setLoading(false);
+        // Here you would set the fetched data
+      }, 1500);
+    }
+  }, [userId]);
 
-    return (
-        <ProfileContainer>
-            <ProfileHeader>
-                <ProfileID>ID: {userData.id}</ProfileID>
-                <ProfileStatus status={userData.status}>{userData.status}</ProfileStatus>
+  return (
+    <ProfileContainer>
+      <ProfileHeader>
+        <ProfileID>ID: {userData.id}</ProfileID>
+        <ProfileStatus status={userData.status}>{userData.status}</ProfileStatus>
 
-                <AvatarSection>
-                    <AvatarFrame>
-                        <Avatar>{userData.avatar}</Avatar>
-                        <DataStreamEffect />
-                    </AvatarFrame>
-                </AvatarSection>
+        <AvatarSection>
+          <AvatarFrame>
+            <Avatar>{userData.avatar}</Avatar>
+            <DataStreamEffect />
+          </AvatarFrame>
+        </AvatarSection>
 
-                <UserInfo>
-                    <UserName>{userData.name}</UserName>
-                    <UserMeta>
-                        <MetaItem>
-                            <label>LEVEL</label>
-                            <span>{userData.level}</span>
-                        </MetaItem>
-                        <MetaItem>
-                            <label>RANK</label>
-                            <span>#{userData.rank}</span>
-                        </MetaItem>
-                        <MetaItem>
-                            <label>JOINED</label>
-                            <span>{userData.joinDate}</span>
-                        </MetaItem>
-                    </UserMeta>
-                </UserInfo>
-            </ProfileHeader>
+        <UserInfo>
+          <UserName>{userData.name}</UserName>
+          <UserMeta>
+            <MetaItem>
+              <label>LEVEL</label>
+              <span>{userData.level}</span>
+            </MetaItem>
+            <MetaItem>
+              <label>RANK</label>
+              <span>#{userData.rank}</span>
+            </MetaItem>
+            <MetaItem>
+              <label>JOINED</label>
+              <span>{userData.joinDate}</span>
+            </MetaItem>
+          </UserMeta>
+        </UserInfo>
+      </ProfileHeader>
 
-            <ProfileBody>
-                <StatsSection>
-                    <StatsGrid>
-                        <StatItem>
-                            <label>GAMES PLAYED</label>
-                            <span>{userData.stats.gamesPlayed}</span>
-                        </StatItem>
-                        <StatItem>
-                            <label>VICTORIES</label>
-                            <span>{userData.stats.wins}</span>
-                        </StatItem>
-                        <StatItem>
-                            <label>WIN RATE</label>
-                            <span>{userData.stats.winRate}</span>
-                        </StatItem>
-                        <StatItem>
-                            <label>BEST SCORE</label>
-                            <span>{userData.stats.bestScore}</span>
-                        </StatItem>
-                        <StatItem>
-                            <label>TOTAL TIME</label>
-                            <span>{userData.stats.totalTime}</span>
-                        </StatItem>
-                        <StatItem>
-                            <label>FAVORITE LEVEL</label>
-                            <span>{userData.stats.favoriteLevel}</span>
-                        </StatItem>
-                    </StatsGrid>
-                </StatsSection>
+      <ProfileBody>
+        <StatsSection>
+          <StatsGrid>
+            <StatItem>
+              <label>GAMES PLAYED</label>
+              <span>{userData.stats.gamesPlayed}</span>
+            </StatItem>
+            <StatItem>
+              <label>VICTORIES</label>
+              <span>{userData.stats.wins}</span>
+            </StatItem>
+            <StatItem>
+              <label>WIN RATE</label>
+              <span>{userData.stats.winRate}</span>
+            </StatItem>
+            <StatItem>
+              <label>BEST SCORE</label>
+              <span>{userData.stats.bestScore}</span>
+            </StatItem>
+            <StatItem>
+              <label>TOTAL TIME</label>
+              <span>{userData.stats.totalTime}</span>
+            </StatItem>
+            <StatItem>
+              <label>FAVORITE LEVEL</label>
+              <span>{userData.stats.favoriteLevel}</span>
+            </StatItem>
+          </StatsGrid>
+        </StatsSection>
 
-                <AchievementSection>
-                    <AchievementList>
-                        {userData.achievements.map(achievement => (
-                            <AchievementItem key={achievement.id} completed={achievement.completed}>
-                                <AchievementName>{achievement.name}</AchievementName>
-                                <AchievementDescription>{achievement.description}</AchievementDescription>
-                                {achievement.completed && (
-                                    <AchievementDate>UNLOCKED: {achievement.date}</AchievementDate>
-                                )}
-                            </AchievementItem>
-                        ))}
-                    </AchievementList>
-                </AchievementSection>
-            </ProfileBody>
+        <AchievementSection>
+          <AchievementList>
+            {userData.achievements.map(achievement => (
+              <AchievementItem key={achievement.id} completed={achievement.completed}>
+                <AchievementName>{achievement.name}</AchievementName>
+                <AchievementDescription>{achievement.description}</AchievementDescription>
+                {achievement.completed && (
+                  <AchievementDate>UNLOCKED: {achievement.date}</AchievementDate>
+                )}
+              </AchievementItem>
+            ))}
+          </AchievementList>
+        </AchievementSection>
+      </ProfileBody>
 
-            <ActionSection>
-                <ActionButton>EDIT PROFILE</ActionButton>
-                <ActionButton>VIEW MATCH HISTORY</ActionButton>
-            </ActionSection>
-        </ProfileContainer>
-    );
+      <ActionSection>
+        <ActionButton>EDIT PROFILE</ActionButton>
+        <ActionButton>VIEW MATCH HISTORY</ActionButton>
+      </ActionSection>
+    </ProfileContainer>
+  );
 };
 
 export default CyberProfile; 

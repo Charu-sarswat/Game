@@ -54,11 +54,13 @@ const particleBurst = keyframes`
   100% { transform: translate(var(--x), var(--y)); opacity: 0; }
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const flipCard = keyframes`
   0% { transform: rotateY(0deg); }
   100% { transform: rotateY(180deg); }
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const flipBack = keyframes`
   0% { transform: rotateY(180deg); }
   100% { transform: rotateY(0deg); }
@@ -1052,13 +1054,23 @@ const useAudio = (url: string) => {
   return { play };
 };
 
+// Updated interface to accept null values in the ref
+interface BurstParticleRef {
+  ref: React.RefObject<HTMLDivElement | null>;
+  isActive: boolean;
+}
+
+interface BurstParticlesMap {
+  [key: number]: BurstParticleRef[];
+}
+
 const LeaderboardV2: React.FC = () => {
   const [currentLevel, setCurrentLevel] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [particles, setParticles] = useState<Array<{ id: number, x: number, y: number, size: number, color: string, delay: number, duration: number }>>([]);
   const [glowingCircles, setGlowingCircles] = useState<Array<{ x: number, y: number, size: number, delay: number }>>([]);
   const [flippedCard, setFlippedCard] = useState<number | null>(null);
-  const burstParticlesRef = useRef<{ [key: number]: { ref: React.RefObject<HTMLDivElement>, isActive: boolean }[] }>({});
+  const burstParticlesRef = useRef<BurstParticlesMap>({});
   const currentUser = 1; // User ID
 
   // Sound effects
@@ -1096,7 +1108,7 @@ const LeaderboardV2: React.FC = () => {
 
     // Initialize burst particles for each player card
     leaderboardData.forEach(player => {
-      burstParticlesRef.current[player.id] = Array(15).fill(null).map(() => ({
+      burstParticlesRef.current[player.id] = Array(15).fill(0).map(() => ({
         ref: React.createRef<HTMLDivElement>(),
         isActive: false
       }));

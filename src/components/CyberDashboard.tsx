@@ -415,9 +415,12 @@ const ScanlineEffect = styled.div`
 `;
 
 const CyberDashboard: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentUser, setCurrentUser] = useState('USR-42X9');
   const [currentTime, setCurrentTime] = useState('20:42:17');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [pingStatus, setPingStatus] = useState('24ms');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [securityStatus, setSecurityStatus] = useState('SECURE');
 
   // Update time every second
