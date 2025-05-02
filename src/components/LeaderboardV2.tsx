@@ -44,6 +44,7 @@ const ripple = keyframes`
   100% { transform: scale(10); opacity: 0; }
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const shine = keyframes`
   0% { background-position: -100% 0; }
   100% { background-position: 200% 0; }
