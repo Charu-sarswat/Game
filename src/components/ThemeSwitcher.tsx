@@ -39,6 +39,16 @@ const Container = styled.div<{ isOpen: boolean }>`
   display: ${(props: { isOpen: boolean }) => props.isOpen || props.isOpen === undefined ? 'block' : 'none'};
   box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
   overflow-y: auto;
+  
+  @media (max-width: 480px) {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 350px) {
+    width: 100%;
+    padding: 1rem;
+  }
 `;
 
 const ToggleButton = styled.button`
@@ -59,6 +69,14 @@ const ToggleButton = styled.button`
   color: white;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
+  
+  @media (max-width: 480px) {
+    top: 10px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
   
   &:hover {
     animation: ${css`${glow}`} 2s infinite;
@@ -93,6 +111,11 @@ const ThemeGrid = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-top: 2rem;
+  
+  @media (max-width: 350px) {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
 `;
 
 const ThemeCard = styled.div<{ theme: ThemeType; isActive: boolean; isLocked: boolean }>`

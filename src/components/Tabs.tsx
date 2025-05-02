@@ -19,6 +19,17 @@ const TabsContainer = styled.div`
   border-bottom: 2px solid rgba(255, 255, 255, 0.05);
   position: relative;
   z-index: 1;
+  overflow-x: auto;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  
+  &::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+  }
+  
+  @media (max-width: 480px) {
+    padding-bottom: 0.5rem;
+  }
   
   &::before {
     content: '';
@@ -51,6 +62,19 @@ const TabItem = styled.button<{ active: boolean }>`
   text-transform: uppercase;
   letter-spacing: 1px;
   overflow: hidden;
+  white-space: nowrap;
+  flex-shrink: 0;
+  
+  @media (max-width: 480px) {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  @media (max-width: 350px) {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
   
   &:hover {
     color: ${(props: { active: boolean }) => props.active ? 'var(--text-primary)' : 'var(--text-primary)'};

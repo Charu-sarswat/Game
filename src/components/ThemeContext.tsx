@@ -136,8 +136,6 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             setCurrentTheme(theme);
             localStorage.setItem('gameTheme', theme);
             updateCssVariables(theme);
-        } else {
-            console.log('Theme is locked:', theme);
         }
     };
 

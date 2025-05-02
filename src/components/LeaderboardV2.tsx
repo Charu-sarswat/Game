@@ -139,77 +139,75 @@ const GlowingCircle = styled.div`
 
 const Header = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  justify-content: space-between;
+  margin-bottom: 2rem;
   position: relative;
-  z-index: 1;
+  
+  @media (max-width: 550px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
   
   &::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -15px;
     left: 0;
     width: 100%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0, 200, 255, 0.3), transparent);
+    background: linear-gradient(90deg, var(--primary), transparent);
   }
 `;
 
 const Title = styled.h2`
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   color: var(--text-primary);
-  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+  font-weight: 900;
   position: relative;
-  letter-spacing: 3px;
-  font-weight: 800;
-  background: linear-gradient(90deg, #00c8ff, #92fe9d, #00c8ff);
-  background-size: 200% auto;
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: ${css`${shine}`} 10s linear infinite;
+  text-transform: uppercase;
   
-  &::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(90deg, #00c8ff, #92fe9d);
-    margin-top: 0.5rem;
-    border-radius: 3px;
-    position: relative;
-    overflow: hidden;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-      animation: ${css`${shimmer}`} 3s infinite;
-    }
+  @media (max-width: 480px) {
+    font-size: 1.8rem;
+  }
+  
+  @media (max-width: 350px) {
+    font-size: 1.5rem;
   }
   
   &::before {
-    content: 'TOP PLAYERS';
+    content: 'SYSTEM//v2.0';
     position: absolute;
-    top: -15px;
+    top: -20px;
     left: 0;
-    font-size: 0.8rem;
-    letter-spacing: 5px;
-    color: var(--accent-secondary);
-    opacity: 0.5;
-    font-weight: 600;
+    font-size: 0.7rem;
+    color: var(--primary);
+    letter-spacing: 3px;
+    opacity: 0.7;
+    -webkit-text-fill-color: var(--primary);
+    
+    @media (max-width: 480px) {
+      font-size: 0.6rem;
+      top: -15px;
+    }
   }
 `;
 
 const LevelNavigator = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  position: relative;
+  gap: 1rem;
+  
+  @media (max-width: 550px) {
+    width: 100%;
+    justify-content: space-between;
+  }
 `;
 
 const LevelLabel = styled.span`
@@ -374,85 +372,68 @@ const LevelText = styled.span`
 `;
 
 const StatsContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
   margin-bottom: 2rem;
-  background: linear-gradient(135deg, rgba(0, 200, 255, 0.08), rgba(146, 254, 157, 0.08));
-  border-radius: 24px;
-  padding: 2rem;
-  backdrop-filter: blur(10px);
+  
+  @media (max-width: 700px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+  }
+  
+  @media (max-width: 550px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+  
+  @media (max-width: 350px) {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+`;
+
+const StatItem = styled.div`
+  background-color: rgba(30, 30, 40, 0.6);
   border: 1px solid rgba(0, 200, 255, 0.2);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 200, 255, 0.1);
+  border-radius: 15px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  transform: translateZ(0);
-  z-index: 1;
+  backdrop-filter: blur(10px);
+  
+  @media (max-width: 700px) {
+    padding: 1rem;
+  }
+  
+  @media (max-width: 550px) {
+    padding: 0.8rem;
+  }
+  
+  ${buttonHoverEffect}
   
   &:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 200, 255, 0.2);
-    transform: translateY(-5px) translateZ(0);
+    transform: translateY(-5px);
+    border-color: rgba(0, 200, 255, 0.4);
+    background-color: rgba(0, 200, 255, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
   
   &::before {
-    content: '';
-    position: absolute;
-    top: -100%;
-    left: -100%;
-    width: 300%;
-    height: 300%;
-    background: conic-gradient(
-      transparent,
-      rgba(0, 200, 255, 0.1),
-      transparent,
-      rgba(146, 254, 157, 0.1),
-      transparent
-    );
-    animation: ${css`${rotateGlow}`} 20s linear infinite;
-    opacity: 0.5;
-    z-index: -1;
-  }
-  
-  &::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0, 200, 255, 0.5), transparent);
-  }
-`;
-
-const StatItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-5px) scale(1.05);
-  }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: calc(50% - 30px);
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle at center, rgba(0, 200, 255, 0.15), transparent 70%);
-    border-radius: 50%;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: -1;
-  }
-  
-  &:hover::before {
-    opacity: 1;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 200, 255, 0.1), transparent);
+    pointer-events: none;
   }
 `;
 
@@ -499,13 +480,18 @@ const StatIconContainer = styled.div`
 `;
 
 const LeaderboardList = styled.div`
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 1;
-  perspective: 1000px;
-  padding-bottom: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  
+  @media (max-width: 350px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const CardContainer = styled.div`
@@ -540,22 +526,54 @@ const CardFront = styled(CardFace)`
   transform: rotateY(0deg);
 `;
 
-const CardBack = styled(CardFace)`
-  transform: rotateY(180deg);
-  background: rgba(20, 20, 30, 0.8);
-  border-radius: 20px;
+const CardBack = styled.div`
+  background-color: rgba(30, 30, 40, 0.8);
   padding: 1.5rem;
+  border-radius: 20px;
+  display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+  left: 0;
   box-sizing: border-box;
+  
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 200, 255, 0.1), transparent);
+    pointer-events: none;
+    border-radius: 20px;
+  }
 `;
 
 const PlayerDetailGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   width: 100%;
-  margin-top: 1rem;
+  
+  @media (max-width: 480px) {
+    gap: 0.8rem;
+  }
+  
+  @media (max-width: 350px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const DetailItem = styled.div`
@@ -596,6 +614,11 @@ const PlayerCard = styled.div<{ isCurrentUser?: boolean; rank: number }>`
   height: 100%;
   width: 100%;
   box-sizing: border-box;
+  
+  @media (max-width: 480px) {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
   
   ${props => {
     if (props.rank === 1) return css`
@@ -679,6 +702,14 @@ const RankBadge = styled.div<{ rank: number }>`
   position: relative;
   overflow: hidden;
   transform-style: preserve-3d;
+  
+  @media (max-width: 480px) {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    margin-right: 0.8rem;
+    border-radius: 12px;
+  }
   
   ${props => {
     if (props.rank === 1) return css`
@@ -782,6 +813,14 @@ const AvatarContainer = styled.div`
   overflow: hidden;
   transform-style: preserve-3d;
   
+  @media (max-width: 480px) {
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
+    margin-right: 0.8rem;
+    border-radius: 14px;
+  }
+  
   &::before {
     content: '';
     position: absolute;
@@ -840,6 +879,11 @@ const PlayerName = styled.div`
   position: relative;
   transition: all 0.3s ease;
   
+  @media (max-width: 480px) {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  
   ${PlayerCard}:hover & {
     transform: translateZ(15px);
     color: #fff;
@@ -872,6 +916,11 @@ const PlayerSteps = styled.div`
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s ease;
+  
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    gap: 0.3rem;
+  }
   
   ${PlayerCard}:hover & {
     transform: translateZ(10px);
@@ -921,6 +970,12 @@ const FilterBar = styled.div`
   position: relative;
   z-index: 1;
   
+  @media (max-width: 550px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+  }
+  
   &::after {
     content: '';
     position: absolute;
@@ -936,6 +991,10 @@ const SearchContainer = styled.div`
   position: relative;
   width: 100%;
   max-width: 350px;
+  
+  @media (max-width: 550px) {
+    max-width: 100%;
+  }
 `;
 
 const SearchIcon = styled.div`
@@ -994,6 +1053,11 @@ const FilterButton = styled.button`
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
+  
+  @media (max-width: 550px) {
+    justify-content: center;
+    padding: 0.8rem 1.2rem;
+  }
   
   ${buttonHoverEffect}
   

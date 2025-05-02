@@ -238,6 +238,11 @@ const ContentGrid = styled.div`
     grid-template-columns: 1fr 1fr;
     margin-top: 3rem;
   }
+  
+  @media (max-width: 480px) {
+    gap: 1.2rem;
+    margin-top: 1.2rem;
+  }
 `;
 
 const DesignVariant = styled.div`
@@ -258,12 +263,20 @@ const DesignVariant = styled.div`
     min-height: 65vh;
   }
   
+  @media (max-width: 480px) {
+    min-height: auto;
+  }
+  
   &:hover {
     transform: translateY(-5px) scale(1.02);
     box-shadow: 0 10px 30px rgba(var(--primary-rgb), 0.5);
     
     @media (max-width: 768px) {
       transform: translateY(-3px) scale(1.01);
+    }
+    
+    @media (max-width: 480px) {
+      transform: translateY(-2px);
     }
   }
   
@@ -311,6 +324,10 @@ const VariantHeader = styled.div`
     align-items: center;
   }
   
+  @media (max-width: 480px) {
+    padding: 0.8rem;
+  }
+  
   h2 {
     font-size: 1rem;
     color: var(--primary);
@@ -326,6 +343,10 @@ const VariantHeader = styled.div`
     @media (min-width: 768px) {
       font-size: 1.25rem;
       letter-spacing: 2px;
+    }
+    
+    @media (max-width: 350px) {
+      font-size: 0.9rem;
     }
   }
   
@@ -355,6 +376,10 @@ const VariantControls = styled.div`
   
   @media (min-width: 480px) {
     gap: 1rem;
+  }
+  
+  @media (max-width: 350px) {
+    gap: 0.3rem;
   }
 `;
 
